@@ -1,1 +1,1 @@
-export const JWT_PASSWORD="!23123"
+export const BACKEND_URL="http://localhost:3000"

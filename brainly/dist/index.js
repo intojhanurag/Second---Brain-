@@ -8,149 +8,145 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var express_1 = __importDefault(require("express"));
-var db_1 = require("./db");
-var config_1 = require("./config");
-var middleware_1 = require("./middleware");
-var app = (0, express_1.default)();
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const express_1 = __importDefault(require("express"));
+const db_1 = require("./db");
+const config_1 = require("./config");
+const middleware_1 = require("./middleware");
+const utils_1 = require("./utils");
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const cors_1 = __importDefault(require("cors"));
+const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.post("/api/v1/signup", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var username, password, e_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                username = req.body.username;
-                password = req.body.password;
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db_1.UserModel.create({
-                        username: username,
-                        password: password
-                    })];
-            case 2:
-                _a.sent();
-                res.json({
-                    message: "User signed up"
-                });
-                return [3 /*break*/, 4];
-            case 3:
-                e_1 = _a.sent();
-                res.status(411).json({
-                    message: "User already exists"
-                });
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
-        }
+app.use((0, cors_1.default)());
+app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const username = req.body.username;
+    const password = req.body.password;
+    try {
+        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
+        yield db_1.UserModel.create({
+            username: username,
+            password: hashedPassword
+        });
+        res.json({
+            message: "User signed up"
+        });
+    }
+    catch (e) {
+        res.status(411).json({
+            message: "User already exists"
+        });
+    }
+}));
+app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const username = req.body.username;
+    const password = req.body.password;
+    const existingUser = yield db_1.UserModel.findOne({
+        username
     });
-}); });
-app.post("/api/v1/signin", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var username, password, existingUser, token;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                username = req.body.username;
-                password = req.body.password;
-                return [4 /*yield*/, db_1.UserModel.findOne({
-                        username: username,
-                        password: password
-                    })];
-            case 1:
-                existingUser = _a.sent();
-                if (existingUser) {
-                    token = jsonwebtoken_1.default.sign({
-                        id: existingUser._id
-                    }, config_1.JWT_PASSWORD);
-                    res.json({
-                        token: token
-                    });
-                }
-                else {
-                    res.status(403).json({
-                        message: "Incorrect Credentials"
-                    });
-                }
-                return [2 /*return*/];
+    if (existingUser && typeof existingUser.password === 'string') {
+        const isPasswordValid = yield bcrypt_1.default.compare(password, existingUser.password);
+        if (isPasswordValid) {
+            const token = jsonwebtoken_1.default.sign({ id: existingUser._id }, config_1.JWT_PASSWORD);
+            res.json({ token });
         }
-    });
-}); });
-app.post("/api/v1/content", middleware_1.userMiddleware, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var link, type;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                link = req.body.link;
-                type = req.body.type;
-                return [4 /*yield*/, db_1.ContentModel.create({
-                        link: link,
-                        type: type,
-                        //@ts-ignore,
-                        userId: req.userId,
-                        tags: []
-                    })];
-            case 1:
-                _a.sent();
-                res.json({
-                    message: "content added"
-                });
-                return [2 /*return*/];
+        else {
+            res.status(403).json({ message: "Incorrect Credentials" });
         }
+    }
+    else {
+        res.status(403).json({
+            message: "Incorrect Credentials"
+        });
+    }
+}));
+app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const link = req.body.link;
+    const type = req.body.type;
+    yield db_1.ContentModel.create({
+        link,
+        type,
+        userId: req.userId,
+        tags: []
     });
-}); });
-app.get("/api/v1/content", middleware_1.userMiddleware, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var userId, content;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                userId = req.userId;
-                return [4 /*yield*/, db_1.ContentModel.find({
-                        userId: userId
-                    }).populate("userId", "username")];
-            case 1:
-                content = _a.sent();
-                res.json({
-                    content: content
-                });
-                return [2 /*return*/];
+    res.json({
+        message: "content added"
+    });
+}));
+app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.userId;
+    const content = yield db_1.ContentModel.find({
+        userId: userId
+    }).populate("userId", "username");
+    res.json({
+        content
+    });
+}));
+app.delete("/api/v1/content", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentId = req.body.contentId;
+    yield db_1.ContentModel.deleteMany({
+        contentId,
+        userId: req.userId
+    });
+    res.json({
+        message: "content deleted"
+    });
+}));
+app.post("/api/v1/brain/share", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const share = req.body.share;
+    if (share) {
+        const existingLink = yield db_1.LinkModel.findOne({
+            userId: req.userId
+        });
+        if (existingLink) {
+            res.json({
+                hash: existingLink.hash
+            });
+            return;
         }
+        const hash = (0, utils_1.random)(10);
+        yield db_1.LinkModel.create({
+            userId: req.userId,
+            hash: hash
+        });
+        res.json({
+            message: "/share/" + hash
+        });
+    }
+    else {
+        yield db_1.LinkModel.deleteOne({
+            userId: req.userId
+        });
+    }
+    res.json({
+        message: "Removed link"
     });
-}); });
-app.delete("/api/v1/content", function (req, res) {
-});
-app.post("/api/v1/share", function (req, res) {
-});
-app.get("/api/v1/brain/:shareLink", function (req, res) {
-});
+}));
+app.get("/api/v1/brain/:shareLink", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const hash = req.params.shareLink;
+    const link = yield db_1.LinkModel.findOne({
+        hash
+    });
+    if (!link) {
+        res.status(411).json({
+            message: "sorry incorrect input"
+        });
+        return;
+    }
+    const content = yield db_1.ContentModel.find({
+        userId: link.userId
+    });
+    console.log(link);
+    const user = yield db_1.UserModel.findOne({
+        _id: link.userId
+    });
+    res.json({
+        username: user === null || user === void 0 ? void 0 : user.username,
+        content: content
+    });
+}));
 app.listen(3000);
