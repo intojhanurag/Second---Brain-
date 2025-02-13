@@ -1,13 +1,23 @@
 
-import { Card } from "../components/ui/card";
+import { Card } from "../components/ui/Card";
 import { CreateContentModel } from "../components/ui/createContentModel";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Sidebar } from "../components/ui/Sidebar";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Button } from "../components/ui/Button";
+import {useContent} from "../hooks/useContent"
+import axios from "axios";
+import { BACKEND_URL } from "../config";
+
 export function Dashboard() {
   const [modelopen, setmodelopen] = useState(false);
+  const {contents,refresh}=useContent();
+
+  useEffect(()=>{
+    refresh();
+
+  },[modelopen])
   return (
     <div>
       <Sidebar/>
@@ -28,23 +38,39 @@ export function Dashboard() {
             startIcon={<PlusIcon />}
           ></Button>
           <Button
+            onClick={async()=>{
+            const response=await axios.post(`${BACKEND_URL}/api/v1/brain/share/`,{
+              share:true
+            },{
+              headers:{
+                "Authorization":localStorage.getItem("token")
+              }
+            })
+        
+
+            const shareUrl=`http://localhost:5173/share/${response.data.hash}`
+
+            alert(shareUrl);
+                
+
+            }}
+
             variant="secondary"
             text="share"
             startIcon={<ShareIcon />}
+            
           ></Button>
         </div>
-        <div className="flex gap-4">
-          <Card
-            type="twitter"
-            link="https://x.com/AnuragOjha8355/status/1889225937155453275"
-            title="First win"
-          />
-
-          <Card
-            type="youtube"
-            link="https://www.youtube.com/watch?v=72GkQIo4QjQ"
-            title="yt win"
-          />
+        <div className="flex gap-4 flex-wrap">
+          {contents.map(({type,link,title},index)=>(<Card
+              key={index}
+              type={type}
+              link={link}
+              title={title}
+              />
+            
+          ))}
+          
         </div>
       </div>
     </div>
