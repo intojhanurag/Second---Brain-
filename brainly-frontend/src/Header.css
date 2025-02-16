@@ -1,0 +1,45 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #007BFF; /* Light blue background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .thinkflow-heading {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-left: 10px; /* Add some space between the logo and the heading */
+  }
+  
+  .brain-logo {
+    font-size: 50px;
+    color: white;
+  }
+  
+  .mode-switch {
+    background: none;
+    border: 2px solid currentColor;
+    padding: 10px;
+    cursor: pointer;
+    color: inherit;
+    font-size: 1.5em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -1,0 +1,30 @@
+/* Card.css */
+
+.card2 {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .card2-icon {
+    margin-right: 20px;
+    font-size: 1em;
+    color: #007bff;
+  }
+  
+  .card2-content h2 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    font-weight:600;
+    color: black;
+  }
+  
+  .card2-content p {
+    margin: 0;
+    font-size: 1em;
+    color: #666;
+  }
