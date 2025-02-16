@@ -4,10 +4,12 @@ import { Dashboard } from "./pages/dashboard";
 import { HomePage } from "./pages/HomePage";
 import { Header } from "./pages/Header";
 import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { Footer } from "./pages/Footer";
 
 function App(){
   return <BrowserRouter>
       <div>
+        
         <Header/>
         <Routes>
           <Route path="/" element={<HomePage/>}/>
@@ -15,6 +17,7 @@ function App(){
           <Route path="/signin" element={<Signin/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
+        <Footer/>
       </div>
     
   </BrowserRouter>
