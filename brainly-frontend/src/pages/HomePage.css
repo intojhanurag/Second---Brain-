@@ -72,6 +72,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  
 }
 
 .logo-container {
@@ -215,4 +216,48 @@
 
 .cta-button:hover {
   background-color: #0056b3;
+}
+
+.animated-text {
+  position: absolute;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: slideIn 3s ease-in-out forwards;
+  z-index: 2;
+}
+
+.animated-text.left {
+  top: 20%;
+  left: -100%;
+  transform: translateY(-50%);
+}
+
+.animated-text.right {
+  top: 80%;
+  right: -100%;
+  transform: translateY(-50%);
+}
+
+@keyframes slideIn {
+  to {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-top: 100px; /* Adjust to account for the fixed header */
+  }
+
+  .phone-frame {
+    margin-top: 20px;
+  }
+
+  .animated-text {
+    font-size: 2rem;
+  }
 }

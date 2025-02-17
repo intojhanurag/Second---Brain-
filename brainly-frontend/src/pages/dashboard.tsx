@@ -12,6 +12,9 @@ import { BACKEND_URL } from "../config";
 
 export function Dashboard() {
   const [modelopen, setmodelopen] = useState(false);
+  const [isSidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+
   const {contents,refresh}=useContent();
 
   useEffect(()=>{
@@ -20,8 +23,9 @@ export function Dashboard() {
   },[modelopen])
   return (
     <div>
-      <Sidebar/>
-      <div className="p-4 ml-72 min-h-screen bg-gray-100 border-2">
+      <Sidebar isCollapsed={isSidebarCollapsed} setCollapsed={setSidebarCollapsed} />
+      
+      <div className="p-4  min-h-screen bg-[#333333]">
         <CreateContentModel
           open={modelopen}
           onClose={() => {

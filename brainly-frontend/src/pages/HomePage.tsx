@@ -25,9 +25,9 @@ export function HomePage() {
       <div className="content">
         {/* <div className="logo-container">
             <FaBrain className="brain-logo"/>
-            <h1 className="thinkflow-heading w-50 pl-2 pr-2 h-16 border-2 rounded-2xl border-solid border-blue-600">ThinkFlow</h1>
+            <h1 classN
+            ame="thinkflow-heading w-50 pl-2 pr-2 h-16 border-2 rounded-2xl border-solid border-blue-600">ThinkFlow</h1>
         </div> */}
-           
         <div className="phone-frame">
           <div className="phone-notch"></div>
           <div className="phone-camera"></div>
