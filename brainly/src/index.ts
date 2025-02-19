@@ -68,6 +68,12 @@ app.post("/api/v1/content",userMiddleware,async(req,res)=>{
 
     const link=req.body.link;
     const type=req.body.type;
+    const userId = new mongoose.Types.ObjectId(req.userId);
+
+
+    console.log("Before saving, userId:", typeof userId, userId);
+
+
 
     await ContentModel.create({
         link,
@@ -75,7 +81,8 @@ app.post("/api/v1/content",userMiddleware,async(req,res)=>{
         
         title:req.body.title,
         //@ts-ignore,
-        userId:req.userId,
+        userId,
+
         tags:[]
 
     })
@@ -87,6 +94,8 @@ app.post("/api/v1/content",userMiddleware,async(req,res)=>{
     
 
 })
+
+
 
 app.get("/api/v1/content",userMiddleware,async(req,res)=>{
     //@ts-ignore
@@ -101,14 +110,21 @@ app.get("/api/v1/content",userMiddleware,async(req,res)=>{
 
 })
 
-app.delete("/api/v1/content",async(req,res)=>{
 
-    const contentId=req.body.contentId;
-    await ContentModel.deleteMany({
-        contentId,
+
+app.delete("/api/v1/content/:id",userMiddleware,async(req,res)=>{
+
+    const contentId=req.params.id
+    const userId=req.userId;
+    console.log(userId);
+    const deletedContent=await ContentModel.findOneAndDelete({
+        _id:contentId,
         //@ts-ignore
-        userId:req.userId
+        userId:userId
     })
+    if(!deletedContent){
+        return res.status(404).json({message:"Content not found or unauthorized"})
+    }
     res.json({
         message:"content deleted"
     })
