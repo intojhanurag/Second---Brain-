@@ -9,7 +9,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userMiddleware = (req, res, next) => {
     const autHeader = req.headers["authorization"];
     if (!autHeader || !autHeader.startsWith("Bearer ")) {
-        return res.status(401).json({ message: "Unauthorized : No token provided" });
+        res.status(401).json({ message: "Unauthorized : No token provided" });
     }
     try {
         const token = autHeader.split(" ")[1];
@@ -20,7 +20,7 @@ const userMiddleware = (req, res, next) => {
     }
     catch (error) {
         console.error("Jwt verification failed", error);
-        return res.status(403).json({ message: "Invalid token" });
+        res.status(403).json({ message: "Invalid token" });
     }
 };
 exports.userMiddleware = userMiddleware;

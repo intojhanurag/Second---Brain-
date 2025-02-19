@@ -3,15 +3,15 @@ import { NextFunction,Request,Response } from "express"
 import { JWT_PASSWORD } from "./config";
 import jwt from "jsonwebtoken"
 
-export interface AuthRequest extends Request{
+export interface Request extends Request{
     userId?:string
 }
 
-export const userMiddleware=(req:AuthRequest,res:Response,next:NextFunction)=>{
+export const userMiddleware=(req:Request,res:Response,next:NextFunction)=>{
 
     const autHeader=req.headers["authorization"];
     if(!autHeader || !autHeader.startsWith("Bearer ")){
-        return res.status(401).json({message:"Unauthorized : No token provided"})
+        res.status(401).json({message:"Unauthorized : No token provided"})
     }
     
     try{
@@ -24,6 +24,6 @@ export const userMiddleware=(req:AuthRequest,res:Response,next:NextFunction)=>{
         
     } catch(error){
         console.error("Jwt verification failed",error);
-        return res.status(403).json({message:"Invalid token"})
+        res.status(403).json({message:"Invalid token"})
     }
 }
