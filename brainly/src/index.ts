@@ -124,7 +124,7 @@ app.delete("/api/v1/content/:id",userMiddleware,async(req,res)=>{
         userId:userId
     })
     if(!deletedContent){
-        return res.status(404).json({message:"Content not found or unauthorized"})
+        res.status(404).json({message:"Content not found or unauthorized"})
     }
     res.json({
         message:"content deleted"
