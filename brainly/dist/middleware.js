@@ -7,16 +7,20 @@ exports.userMiddleware = void 0;
 const config_1 = require("./config");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userMiddleware = (req, res, next) => {
-    const header = req.headers["authorization"];
-    const decoded = jsonwebtoken_1.default.verify(header, config_1.JWT_PASSWORD);
-    if (decoded) {
-        req.userId = decoded.id;
+    const autHeader = req.headers["authorization"];
+    if (!autHeader || !autHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Unauthorized : No token provided" });
+    }
+    try {
+        const token = autHeader.split(" ")[1];
+        const decoded = jsonwebtoken_1.default.verify(token, config_1.JWT_PASSWORD);
+        req.userId = Array.isArray(decoded.id) ? decoded.id[0] : decoded.id;
+        console.log("User authenticated with id :", req.userId);
         next();
     }
-    else {
-        res.status(403).json({
-            message: "You are not loged in"
-        });
+    catch (error) {
+        console.error("Jwt verification failed", error);
+        return res.status(403).json({ message: "Invalid token" });
     }
 };
 exports.userMiddleware = userMiddleware;

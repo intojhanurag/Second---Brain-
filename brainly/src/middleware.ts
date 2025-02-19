@@ -3,7 +3,7 @@ import { NextFunction,Request,Response } from "express"
 import { JWT_PASSWORD } from "./config";
 import jwt from "jsonwebtoken"
 
-interface AuthRequest extends Request{
+export interface AuthRequest extends Request{
     userId?:string
 }
 

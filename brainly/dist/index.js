@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const express_1 = __importDefault(require("express"));
 const db_1 = require("./db");
@@ -67,11 +68,13 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
 app.post("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const link = req.body.link;
     const type = req.body.type;
+    const userId = new mongoose_1.default.Types.ObjectId(req.userId);
+    console.log("Before saving, userId:", typeof userId, userId);
     yield db_1.ContentModel.create({
         link,
         type,
         title: req.body.title,
-        userId: req.userId,
+        userId,
         tags: []
     });
     res.json({
@@ -87,12 +90,17 @@ app.get("/api/v1/content", middleware_1.userMiddleware, (req, res) => __awaiter(
         content
     });
 }));
-app.delete("/api/v1/content", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const contentId = req.body.contentId;
-    yield db_1.ContentModel.deleteMany({
-        contentId,
-        userId: req.userId
+app.delete("/api/v1/content/:id", middleware_1.userMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const contentId = req.params.id;
+    const userId = req.userId;
+    console.log(userId);
+    const deletedContent = yield db_1.ContentModel.findOneAndDelete({
+        _id: contentId,
+        userId: userId
     });
+    if (!deletedContent) {
+        return res.status(404).json({ message: "Content not found or unauthorized" });
+    }
     res.json({
         message: "content deleted"
     });

@@ -7,6 +7,7 @@ import { ContentModel, LinkModel, UserModel } from "./db";
 import { JWT_PASSWORD } from "./config";
 import { userMiddleware } from "./middleware";
 import { random } from "./utils";
+import { AuthRequest } from "./middleware";
 import bcrypt from "bcrypt";
 import cors from "cors"
 
