@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# 2nd Brain
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+2nd Brain is a web platform built using **React, TypeScript, and Node.js** that allows users to create an account and store various social media embedded posts in a categorized manner. Users can then visualize their "Brain" and share a unique link to their stored data with others.
 
-Currently, two official plugins are available:
+## Features
+- **User Authentication**: Users can sign up and log in securely.
+- **Store Embedded Posts**: Save social media posts (e.g., Twitter, Instagram, YouTube) in a structured way.
+- **Categorization**: Organize stored posts into different categories.
+- **View Brain**: A dedicated section to visualize and manage stored posts.
+- **Share Brain**: Generate a shareable link to allow others to view stored content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend**: React + TypeScript
+- **Backend**: Node.js + Express
+- **Database**: MongoDB (or any other database of choice)
+- **Authentication**: JWT-based authentication (or OAuth, if applicable)
 
-## Expanding the ESLint configuration
+## Installation & Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
+Ensure you have the following installed:
+- **Node.js** (Latest LTS version recommended)
+- **MongoDB** (if using locally)
+- **Git** (optional but recommended)
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Clone the Repository
+```sh
+git clone https://github.com/your-username/2nd-brain.git
+cd 2nd-brain
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Backend Setup
+```sh
+cd backend
+npm install
+npm run dev
 ```
+
+### Frontend Setup
+```sh
+cd frontend
+npm install
+npm start
+```
+
+## Environment Variables
+Create a `.env` file in the backend directory and set the required variables:
+```
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+```
+
+## Usage
+1. Sign up or log in to your account.
+2. Add embedded posts from various social media platforms.
+3. Categorize and organize your saved posts.
+4. View your saved "Brain" anytime.
+5. Share your "2nd Brain" link with others.
+
+## Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+This project is licensed under the MIT License.
+
+---
+
+### Future Enhancements
+- **AI-based categorization** of stored content.
+- **Support for more social media platforms**.
+- **Dark mode and customizable themes**.
+
+Enjoy building your 2nd Brain! 🚀
+
