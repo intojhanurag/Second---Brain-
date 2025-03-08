@@ -37,6 +37,7 @@ export function Dashboard() {
       }
     );
     const url=`http://localhost:5173/share/${response.data.hash}`;
+    console.log(url)
     setShareUrl(url);
     setShareModalOpen(true);
   }

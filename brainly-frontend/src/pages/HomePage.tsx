@@ -13,7 +13,7 @@ export function BackgroundLinesDemo() {
         <HoverBorderGradientDemo />
 
         
-          <div className="mt-4 flex flex-col items-center">
+          <div className="mt-12 flex flex-col items-center">
             <h2 className="bg-clip-text pt-10 text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-4xl sm:text-4xl  md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight ">
               Collect Organise, <br /> Visual Share.
             </h2>
@@ -26,7 +26,7 @@ export function BackgroundLinesDemo() {
       <br />
       <MovingBorderDemo/>
       
-      <div className="h-full lg:pb-32 pt-12" >
+      <div className="h-full pl-6 pr-6   lg:pb-32 pt-12" >
         <GlowingEffectDemoSecond />
       </div>
     </div>

@@ -5,7 +5,7 @@ import express, { Response } from "express";
 import { ContentModel, LinkModel, UserModel } from "./db";
 
 import { JWT_PASSWORD } from "./config";
-import { authRequest, userMiddleware } from "./middleware";
+import { AuthRequest, userMiddleware } from "./middleware";
 import { random } from "./utils";
 
 import bcrypt from "bcrypt";
@@ -41,7 +41,7 @@ app.post("/api/v1/signup",async(req,res)=>{
 
 })
 
-app.post("/api/v1/signin",async(req: authRequest,res: Response)=>{
+app.post("/api/v1/signin",async(req: AuthRequest,res: Response)=>{
     const username=req.body.username;
     const password=req.body.password;
 
@@ -65,7 +65,7 @@ app.post("/api/v1/signin",async(req: authRequest,res: Response)=>{
 
 })
 
-app.post("/api/v1/content",userMiddleware,async(req: authRequest,res: Response)=>{
+app.post("/api/v1/content",userMiddleware,async(req: AuthRequest,res: Response)=>{
 
     const link=req.body.link;
     const type=req.body.type;
@@ -113,7 +113,7 @@ app.get("/api/v1/content",userMiddleware,async(req,res)=>{
 
 
 
-app.delete("/api/v1/content/:id",userMiddleware,async(req: authRequest,res: Response)=>{
+app.delete("/api/v1/content/:id",userMiddleware,async(req: AuthRequest,res: Response)=>{
 
     const contentId=req.params.id
     const userId=req.userId;
@@ -132,7 +132,7 @@ app.delete("/api/v1/content/:id",userMiddleware,async(req: authRequest,res: Resp
 
 })
 
-app.post("/api/v1/brain/share",userMiddleware,async(req: authRequest,res: Response)=>{
+app.post("/api/v1/brain/share",userMiddleware,async(req: AuthRequest,res: Response)=>{
 
     const share=req.body.share;
     

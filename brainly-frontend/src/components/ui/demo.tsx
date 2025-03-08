@@ -14,6 +14,7 @@ export function GlowingEffectDemoSecond() {
       />
 
       <GridItem
+        
         area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
         icon={<Settings className="h-4 w-4 text-black dark:text-neutral-400" />}
         title="Share with world"
@@ -64,7 +65,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
           proximity={64}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border-0.75 p-6  dark:shadow-[0px_0px_27px_0px_#2D2D2D] md:p-6">
+        <div className="relative  flex h-full flex-col justify-between gap-6 overflow-hidden !rounded-2.5xl border-0.75 p-6  dark:shadow-[0px_0px_27px_0px_#2D2D2D] md:p-6">
           <div className="relative flex flex-1 flex-col justify-between gap-3">
             <div className="w-fit rounded-lg border border-gray-600 p-2 ">
               {icon}
