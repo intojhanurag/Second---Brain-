@@ -1,54 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import "./HomePage.css";
-import { Logo } from "../components/ui/Logo";
-import { Card2 } from "../components/ui/Card2";
-import {FaSun,FaMoon, FaBrain, FaEnvelope, FaSearch, FaSync, FaImages, FaPlay } from 'react-icons/fa'; // Import icons from react-icons
+import { BackgroundLines } from "../components/ui/background-lines";
+import { GlowingEffectDemoSecond } from "../components/ui/demo";
+import { HoverBorderGradientDemo } from "../components/ui/Hoverborderdemo";
 
-import brainImage from "../assets/brainim.jpg"; // Assuming you have a brain logo image
+import { MovingBorderDemo } from "../components/ui/movingBorderDemo";
 
-export function HomePage() {
-  const [darkMode, setDarkMode] = useState(true);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
+export function BackgroundLinesDemo() {
   return (
-    <div className={`homepage ${darkMode ? "dark" : "light"}`}>
-      {/* <header className="header">
-        <button className="mode-switch" onClick={toggleDarkMode}>
-          {darkMode ? <FaSun/> : <FaMoon/>}
-        </button>
-      </header> */}
-      <div className="content">
-        {/* <div className="logo-container">
-            <FaBrain className="brain-logo"/>
-            <h1 classN
-            ame="thinkflow-heading w-50 pl-2 pr-2 h-16 border-2 rounded-2xl border-solid border-blue-600">ThinkFlow</h1>
-        </div> */}
-        <div className="phone-frame">
-          <div className="phone-notch"></div>
-          <div className="phone-camera"></div>
-          <div className="phone-screen">
-            <div className="features">
-              <Card2 title="ThinkFlow" description="Hello this is your 2nd Brain" icon={<FaBrain />} />
-              <Card2 title="Organized message" description="Keep your messages organized and easily accessible." icon={<FaEnvelope />} />
-              <Card2 title="Quick Search" description="Find what you need quickly with powerful search features." icon={<FaSearch />} />
-              <Card2 title="Cross-Platform Integration" description="Seamlessly integrate across multiple platforms." icon={<FaSync />} />
-              <Card2 title="Bring Your Gallery" description="Easily bring your gallery into the platform." icon={<FaImages />} />
-              <Card2 title="Play and View in Site" description="Play and view media directly within the site." icon={<FaPlay />} />
-              {/* Add more features as needed */}
-            </div>
-          </div>
-        </div>
-        <Link 
-            to="/signin" 
-            className="cta-button px-8 py-3 bg-blue-500 text-white font-bold text-lg rounded-full shadow-lg hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105 ">
-            Let's Go 
-        </Link>
+    <div className=" overflow-hidden items-center bg-white dark:bg-black flex flex-col justify-between">
+      <BackgroundLines className=" w-full flex flex-col items-center px-4">
+        <HoverBorderGradientDemo />
 
+        
+          <div className="mt-4 flex flex-col items-center">
+            <h2 className="bg-clip-text pt-10 text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 dark:to-white text-4xl sm:text-4xl  md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight ">
+              Collect Organise, <br /> Visual Share.
+            </h2>
+            <p className="max-w-xl mx-auto text-xl  sm-text-sm md:text-lg text-neutral-700 dark:text-neutral-400 text-center mt-2 md:mt-4 lg:mt-6">
+              Your digital mind, reimagined. Save, organize, and share your most valuable ideas, inspirations, and memories—all in one place.
+            </p>
+          </div>
+       
+      </BackgroundLines>
+      <br />
+      <MovingBorderDemo/>
+      
+      <div className="h-full lg:pb-32 pt-12" >
+        <GlowingEffectDemoSecond />
       </div>
     </div>
   );
