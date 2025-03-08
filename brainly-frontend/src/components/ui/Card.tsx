@@ -31,7 +31,7 @@ export function Card({title,link,type,onDelete}:CardProps) {
               </a>
             </div>
             <div className="pr-2 text-gray-500 cursor-pointer" onClick={onDelete}>
-              <DeleteIcon/>
+              <DeleteIcon size="sm"/>
             </div>
           </div>
         </div>
