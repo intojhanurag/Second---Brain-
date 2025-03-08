@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken"
-import express from "express";
+import express, { Response } from "express";
 
 import { ContentModel, LinkModel, UserModel } from "./db";
 
 import { JWT_PASSWORD } from "./config";
-import { userMiddleware } from "./middleware";
+import { authRequest, userMiddleware } from "./middleware";
 import { random } from "./utils";
-import { Request } from "./middleware";
+
 import bcrypt from "bcrypt";
 import cors from "cors"
 
@@ -41,7 +41,7 @@ app.post("/api/v1/signup",async(req,res)=>{
 
 })
 
-app.post("/api/v1/signin",async(req,res)=>{
+app.post("/api/v1/signin",async(req: authRequest,res: Response)=>{
     const username=req.body.username;
     const password=req.body.password;
 
@@ -65,7 +65,7 @@ app.post("/api/v1/signin",async(req,res)=>{
 
 })
 
-app.post("/api/v1/content",userMiddleware,async(req,res)=>{
+app.post("/api/v1/content",userMiddleware,async(req: authRequest,res: Response)=>{
 
     const link=req.body.link;
     const type=req.body.type;
@@ -113,7 +113,7 @@ app.get("/api/v1/content",userMiddleware,async(req,res)=>{
 
 
 
-app.delete("/api/v1/content/:id",userMiddleware,async(req,res)=>{
+app.delete("/api/v1/content/:id",userMiddleware,async(req: authRequest,res: Response)=>{
 
     const contentId=req.params.id
     const userId=req.userId;
@@ -132,7 +132,7 @@ app.delete("/api/v1/content/:id",userMiddleware,async(req,res)=>{
 
 })
 
-app.post("/api/v1/brain/share",userMiddleware,async(req,res)=>{
+app.post("/api/v1/brain/share",userMiddleware,async(req: authRequest,res: Response)=>{
 
     const share=req.body.share;
     
@@ -202,8 +202,3 @@ app.get("/api/v1/brain/:shareLink",async(req,res)=>{
 })
 
 app.listen(3000)
-
-
-
-
-
