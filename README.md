@@ -1,5 +1,5 @@
 # 2nd Brain
-![image alt] (https://github.com/intojhanurag/Second---Brain-/blob/578c8c3a8aa8fa6a1965f3c23fdcea41e0efc94d/Screenshot%202025-03-08%20233314.png)
+![image alt] (https://github.com/intojhanurag/Second---Brain-/blob/578c8c3a8aa8fa6a1965f3c23fdcea41e0efc94d/Screenshot%202025-03-08%20233314.png?raw=true)
 ## Overview
 2nd Brain is a web platform built using **React, TypeScript, and Node.js** that allows users to create an account and store various social media embedded posts in a categorized manner. Users can then visualize their "Brain" and share a unique link to their stored data with others.
 
