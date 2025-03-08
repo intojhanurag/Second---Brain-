@@ -1,4 +1,4 @@
-import React from "react";
+
 import { BackgroundLines } from "../components/ui/background-lines";
 import { GlowingEffectDemoSecond } from "../components/ui/demo";
 import { HoverBorderGradientDemo } from "../components/ui/Hoverborderdemo";

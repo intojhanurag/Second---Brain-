@@ -1,6 +1,6 @@
-import React from "react";
+
 import "./Header.css"
-import { FaBrain, FaSun, FaMoon } from 'react-icons/fa'; // Import icons from react-icons
+import { FaBrain} from 'react-icons/fa'; // Import icons from react-icons
 
 export function Header(){
   return (

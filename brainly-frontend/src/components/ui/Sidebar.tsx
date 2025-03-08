@@ -1,6 +1,6 @@
 import { TwitterIcon } from "../../icons/Twitter";
 import { SidebarItem } from "./SidebarItem";
-import { useState } from "react";
+
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa"; // Import icons for the toggle button
 import { YouTubeIcon } from "../../icons/YoutubeIcon";
 import { FacebookIcon } from "../../icons/FacebookIcon";

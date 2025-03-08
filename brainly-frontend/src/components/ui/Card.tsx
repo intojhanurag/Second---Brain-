@@ -3,8 +3,6 @@ import { DeleteIcon } from "../../icons/DeleteIcon";
 import { SaveIcon } from "../../icons/SaveIcon";
 import {InstagramEmbed} from 'react-social-media-embed'
 import { FacebookEmbed } from 'react-social-media-embed';
-import { PinterestEmbed } from 'react-social-media-embed';
-import { LinkedInEmbed } from 'react-social-media-embed';
 
 
 interface CardProps{

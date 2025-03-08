@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-import { HoverBorderGradient } from "./hover-border-gradient";
-import { FaBrain, FaSun, FaMoon } from 'react-icons/fa'; // Import icons from react-icons
+
+import { FaBrain } from 'react-icons/fa'; // Import icons from react-icons
 
 export function HoverBorderGradientDemo() {
   return (
