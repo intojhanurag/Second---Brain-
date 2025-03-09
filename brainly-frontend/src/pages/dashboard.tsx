@@ -28,7 +28,7 @@ export function Dashboard() {
 
   const handleShare=async()=>{
     const response=await axios.post(
-      `${BACKEND_URL}/api/v1/brain/share`,
+      "https://brainly-backend-mu.vercel.app/api/v1/brain/share",
       {share:true},
       {
         headers:{

@@ -6,11 +6,11 @@ import axios from "axios"
 export function useContent(){
     const [contents,setContents]=useState([]);
 
-    function refresh()
+    function refresh()  
     {
         const tokendemo=localStorage.getItem("token")
         console.log(tokendemo);
-        axios.get("https://brainly-backend-lfwn22nyr-anurag-ojhas-projects.vercel.app",{
+        axios.get("https://brainly-backend-mu.vercel.app/api/v1/content",{
             
             headers:{
                 "Authorization": localStorage.getItem("token")
