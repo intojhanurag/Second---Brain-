@@ -29,7 +29,7 @@ export const CreateContentModel = ({ open, onClose }) => {
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
 
-        await axios.post(`${BACKEND_URL}/api/v1/content`, {
+        await axios.post(`https://brainly-backend-mu.vercel.app/api/v1/content`, {
             link,
             title,
             type

@@ -36,7 +36,7 @@ export function Dashboard() {
         },
       }
     );
-    const url=`http://localhost:5173/share/${response.data.hash}`;
+    const url=`https://brainly-backend-mu.vercel.app/share/${response.data.hash}`;
     console.log(url)
     setShareUrl(url);
     setShareModalOpen(true);
@@ -47,7 +47,7 @@ export function Dashboard() {
 
   const handleDelete=async (contentId:string)=>{
     console.log(contentId);
-    await axios.delete(`${BACKEND_URL}/api/v1/content/${contentId}`,{
+    await axios.delete(`https://brainly-backend-mu.vercel.app/api/v1/content/${contentId}`,{
       headers:{
         Authorization:localStorage.getItem("token"),
       }
