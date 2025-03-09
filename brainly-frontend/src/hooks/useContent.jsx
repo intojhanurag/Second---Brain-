@@ -10,7 +10,7 @@ export function useContent(){
     {
         const tokendemo=localStorage.getItem("token")
         console.log(tokendemo);
-        axios.get(`${BACKEND_URL}/api/v1/content`,{
+        axios.get("https://brainly-backend-lfwn22nyr-anurag-ojhas-projects.vercel.app",{
             
             headers:{
                 "Authorization": localStorage.getItem("token")

@@ -18,7 +18,7 @@ export function Signin() {
     const username = usernameRef.current?.value || "";
     const password = passwordRef.current?.value || "";
 
-    const response = await axios.post(BACKEND_URL + "/api/v1/signin", {
+    const response = await axios.post("https://brainly-backend-lfwn22nyr-anurag-ojhas-projects.vercel.app", {
       username,
       password,
     });
