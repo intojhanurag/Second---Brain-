@@ -21,7 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.0"
+    "mongoose": "^7.6.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
