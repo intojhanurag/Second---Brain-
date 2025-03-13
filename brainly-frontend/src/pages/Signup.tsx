@@ -4,12 +4,18 @@ import { useRef } from "react";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUserPlus } from "react-icons/fa"; // Import an icon for the button
+import { FaUserPlus,FaEye,FaEyeSlash } from "react-icons/fa"; // Import an icon for the button
+
+
 
 export function Signup() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  const [showPassword,setShowPassword]=useState(false);
+  
 
   const navigate = useNavigate();
 
@@ -42,12 +48,19 @@ export function Signup() {
         <div className="text-white pb-2">
             Password
         </div>
-        <Input
-          ref={passwordRef}
-          placeholder="Password"
-          type="password"
-          className="mb-6 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <div className="relative mb-6">
+          <Input
+            ref={passwordRef}
+            placeholder="Password"
+            type={showPassword?"text":"password"}
+            className="mb-6 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div 
+            className="absolute inset-y-6 right-0 text-2xl  mb-40  mr-2 pr-0 flex items-center cursor-pointer"
+            onClick={()=>setShowPassword(!showPassword)}>
+            {showPassword?<FaEyeSlash className="text-gray-500"/>:<FaEye className="text-gray-500"/>}
+            </div>
+        </div>
         <div className="flex justify-center">
           <Button
             onClick={signup}
@@ -61,7 +74,7 @@ export function Signup() {
         </div>
         <div className="text-center mt-4">
           <span className="text-white">Do you not have an account? </span>
-          <Link to="/signup" className="text-blue-500 hover:underline">
+          <Link to="/signin" className="text-blue-500 hover:underline">
             Sign in
           </Link>
         </div>

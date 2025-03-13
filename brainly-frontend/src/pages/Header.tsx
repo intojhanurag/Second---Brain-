@@ -7,7 +7,7 @@ export function Header(){
     <header className="header dark:bg-black">
       <div className="logo-container ">
         <FaBrain className="brain-logo" />
-        <h1 className="thinkflow-heading">ThinkFlow</h1>
+        <h1 className="thinkflow-heading  font-cursive">ThinkFlow</h1>
       </div>
     </header>
   );

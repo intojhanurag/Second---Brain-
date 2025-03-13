@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        cursive:['"Dancing Script"','cursive'],
+      },
       animation:{
         marquee: "marquee 10s linear infinite",
 
@@ -17,6 +20,7 @@ export default {
           '100%': { transform: 'translateX(-100%)' },
         },
       },
+      
       colors:{
         gray:{
           50:"rgba(255,255,255,0.5)",

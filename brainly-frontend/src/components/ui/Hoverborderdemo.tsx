@@ -7,7 +7,7 @@ export function HoverBorderGradientDemo() {
     <div className="absolute pl-8 text-4xl left-0 top-4  flex justify-center text-center text-white">
       
         <FaBrain/>
-        <span className="pl-2">ThinkFlow</span>
+        <span className="pl-2 font-cursive italic">ThinkFlow</span>
       
     </div>
   );
