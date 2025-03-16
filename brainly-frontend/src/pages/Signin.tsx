@@ -36,7 +36,7 @@ export function Signin() {
       const jwt = response.data.token;
       if (jwt) {
         localStorage.setItem("token", jwt);
-        toast.success("🎉 You signed-in! Please login now.", {
+        toast.success("🎉 You signed-in! Congrats", {
           position: "top-center",
           autoClose: 3000,
         });
