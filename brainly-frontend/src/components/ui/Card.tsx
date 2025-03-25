@@ -72,7 +72,15 @@ export function Card({title,link,type,onDelete}:CardProps) {
                 return match ? match[1] : null;
               };
               const tweetId=getTweetId(link);
-              return tweetId ? <TwitterTweetEmbed tweetId={tweetId}/> : null;
+              return tweetId ? (
+                <div style={{ 
+                  maxHeight: "250px", // Adjust this height as needed 
+                  overflow: "hidden", 
+                  borderRadius: "10px"
+                }}>
+                  <TwitterTweetEmbed tweetId={tweetId} />
+                </div>
+              ) : null;
 
             })()}
 
