@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ShareIcon } from "../../icons/ShareIcon";
 import { DeleteIcon } from "../../icons/DeleteIcon";
 import { SaveIcon } from "../../icons/SaveIcon";
@@ -6,10 +8,10 @@ import { FacebookEmbed } from 'react-social-media-embed';
 import { TypeIcon } from "lucide-react";
 import { ContentTypeDisplay } from "./typeicon";
 import { LinkedInEmbed } from 'react-social-media-embed';
-import { Tweet } from 'react-tweet';
+import { Tweet } from "react-tweet";
 
 
-interface CardPropsimport
+interface CardProps
 {
     _id:string;
     title:string;
