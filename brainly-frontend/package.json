@@ -23,6 +23,7 @@
     "react-social-media-embed": "^2.5.18",
     "react-spotify-embed": "^2.0.4",
     "react-toastify": "^11.0.5",
+    "react-tweet": "^3.2.2",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
