@@ -8,7 +8,13 @@ import { FacebookEmbed } from 'react-social-media-embed';
 import { TypeIcon } from "lucide-react";
 import { ContentTypeDisplay } from "./typeicon";
 import { LinkedInEmbed } from 'react-social-media-embed';
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
+import { lazy, Suspense } from "react";
+
+const TwitterTweetEmbed = lazy(() =>
+  import("react-twitter-embed").then((mod) => ({ default: mod.TwitterTweetEmbed }))
+);
+
 
 
 
@@ -78,7 +84,10 @@ export function Card({title,link,type,onDelete}:CardProps) {
                   overflow: "hidden", 
                   borderRadius: "10px"
                 }}>
+                  <Suspense fallback={<div>Loading...</div>}>
                   <TwitterTweetEmbed tweetId={tweetId} />
+                </Suspense>
+
                 </div>
               ) : null;
 
