@@ -31,7 +31,7 @@ export function Sidebar({isCollapsed,toogleSidebar}:SidebarProps) {
           <SidebarItem text="Facebook" icon={<FacebookIcon />} isCollapsed={isCollapsed} />
           <SidebarItem text="Instagram" icon={<InstagramIcon />} isCollapsed={isCollapsed} />
           <SidebarItem text="Pinterest" icon={<PinterestIcon />} isCollapsed={isCollapsed} />
-          <SidebarItem text="Gallery" icon={<GalleryIcon />} isCollapsed={isCollapsed} />
+          
           <SidebarItem text="Spotify" icon={<SpotifyIcon />} isCollapsed={isCollapsed} />
           <SidebarItem text="Linkedin" icon={<LinkedinIcon />} isCollapsed={isCollapsed} />
           

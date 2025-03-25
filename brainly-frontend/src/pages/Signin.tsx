@@ -63,7 +63,7 @@ export function Signin() {
 
   return (
     
-    <div className="h-screen w-screen bg-black flex justify-center items-center">
+    <div className="h-screen w-screen bg-black flex justify-center items-center p-12">
       
 
       <div className="bg-black border-2 border-white rounded-lg shadow-lg p-8 w-full max-w-md">

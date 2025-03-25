@@ -3,11 +3,12 @@ import { ReactElement } from "react";
 interface ButtonProps {
   variant: "primary" | "secondary";
   text: string;
-  startIcon: ReactElement;
+  startIcon?: ReactElement;
   onClick?: () => void;
   fullWidth?: boolean;
   loading?: boolean;
   className?: string;
+  disabled?:boolean;
 }
 
 const variantClasses = {
@@ -25,17 +26,18 @@ export function Button({
   fullWidth,
   loading,
   className,
+  disabled
 }: ButtonProps) {
   return (
     <button
-      onClick={onClick}
+      onClick={(!loading && !disabled) ? onClick : undefined} // Fix: Ensures `onClick` is never `null`
       className={`${variantClasses[variant]} ${defaultStyles} ${
         fullWidth ? "w-full justify-center items-center" : ""
       } ${loading ? "opacity-45" : ""} ${className}`}
-      disabled={loading}
+      disabled={loading || disabled}
     >
-      <div className="pr-2">{startIcon}</div>
-      {text}
+      {startIcon && <div className="pr-2">{startIcon}</div>}
+      {loading ? "Loading..." : text} {/* Show loading text when needed */}
     </button>
   );
 }
