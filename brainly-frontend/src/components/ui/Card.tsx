@@ -9,14 +9,7 @@ import { TypeIcon } from "lucide-react";
 import { ContentTypeDisplay } from "./typeicon";
 import { LinkedInEmbed } from 'react-social-media-embed';
 
-import { lazy, Suspense } from "react";
-
-const TwitterTweetEmbed = lazy(() =>
-  import("react-twitter-embed").then((mod) => ({ default: mod.TwitterTweetEmbed }))
-);
-
-
-
+import TweetEmbed from "react-tweet-embed";
 
 interface CardProps
 {
@@ -84,9 +77,8 @@ export function Card({title,link,type,onDelete}:CardProps) {
                   overflow: "hidden", 
                   borderRadius: "10px"
                 }}>
-                  <Suspense fallback={<div>Loading...</div>}>
-                  <TwitterTweetEmbed tweetId={tweetId} />
-                </Suspense>
+                  <TweetEmbed tweetId={tweetId} />
+
 
                 </div>
               ) : null;

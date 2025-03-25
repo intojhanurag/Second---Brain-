@@ -24,6 +24,7 @@
     "react-spotify-embed": "^2.0.4",
     "react-toastify": "^11.0.5",
     "react-tweet": "^3.2.2",
+    "react-tweet-embed": "^2.0.0",
     "react-twitter-embed": "^4.0.4",
     "tailwind-merge": "^3.0.2"
   },
