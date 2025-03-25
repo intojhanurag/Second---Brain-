@@ -8,7 +8,8 @@ import { FacebookEmbed } from 'react-social-media-embed';
 import { TypeIcon } from "lucide-react";
 import { ContentTypeDisplay } from "./typeicon";
 import { LinkedInEmbed } from 'react-social-media-embed';
-import { Tweet } from "react-tweet";
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+
 
 
 interface CardProps
@@ -71,7 +72,7 @@ export function Card({title,link,type,onDelete}:CardProps) {
                 return match ? match[1] : null;
               };
               const tweetId=getTweetId(link);
-              return tweetId ? <Tweet id={tweetId}/> : null;
+              return tweetId ? <TwitterTweetEmbed tweetId={tweetId}/> : null;
 
             })()}
 
