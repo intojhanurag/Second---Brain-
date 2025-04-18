@@ -1,8 +1,16 @@
 //create user model and schema
 import mongoose from "mongoose";
 import {model,Schema} from "mongoose"
+import dotenv from "dotenv";
 
-mongoose.connect("mongodb+srv://aojharaj2004:arpitojha%40com@cluster0.qhh6b.mongodb.net/brainly")
+dotenv.config();
+const MONGODB_URI=process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not defined in the .env file");
+  }
+  
+mongoose.connect(MONGODB_URI);
 //userSchema
 const UserSchema=new Schema({
     username:{type:String,unique:true},
