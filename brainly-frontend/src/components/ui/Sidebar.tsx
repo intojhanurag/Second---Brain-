@@ -19,7 +19,7 @@ interface SidebarProps{
 
 export function Sidebar({isCollapsed,toogleSidebar}:SidebarProps) {
   return (
-    <div className={`fixed top-0 left-0 h-full bg-[#474646] shadow transition-all duration-300 ${isCollapsed ? "w-20" : "w-72"}`}>
+    <div className={`fixed top-0 left-0 h-full bg-[#474646] shadow transition-all duration-300 ${isCollapsed ? "w-12 md:w-20" : "w-72"}`}>
       <div className="sidebar-content">
         <div className="logo-container flex items-center justify-center py-4">
           <Logo className="text-purple-700" />

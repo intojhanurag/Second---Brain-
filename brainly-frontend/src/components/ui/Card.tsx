@@ -22,7 +22,7 @@ interface CardProps
 export function Card({title,link,type,onDelete}:CardProps) {
   return (
     <div>
-      <div className="p-4 bg-black rounded-md border-slate-200 max-w-72 border min-h-48 min-w-72">
+      <div className="p-10 justify-center bg-black rounded-md border-slate-200 justify-center mr-12 max-w-96 border min-h-28 min-w-55 ">
         <div className="flex justify-between">
 
           <div className="flex items-center font-semibold">
@@ -73,9 +73,11 @@ export function Card({title,link,type,onDelete}:CardProps) {
               const tweetId=getTweetId(link);
               return tweetId ? (
                 <div style={{ 
-                  maxHeight: "250px", // Adjust this height as needed 
+                  height:"300px",
+                  width:"250px",
                   overflow: "hidden", 
                   borderRadius: "10px"
+
                 }}>
                   <TweetEmbed tweetId={tweetId} />
 
